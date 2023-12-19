@@ -14,4 +14,9 @@ if storage_t == "db":
 else:
     from models.engine.file_storage import FileStorage
     storage = FileStorage()
+
+# Assurez-vous que le module est correctement importé
+# Modifiez le nom du module si nécessaire
+from models.engine import db_storage
+
 storage.reload()
