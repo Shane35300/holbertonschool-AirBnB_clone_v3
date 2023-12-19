@@ -15,7 +15,7 @@ from models.user import User
 def get_status():
     return jsonify({"status": "OK"})
 
-@app_views.route('/api/vi/stats')
+@app_views.route('/stats')
 def count_type():
     count_type = {
         'amenities': storage.count(Amenity),
