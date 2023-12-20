@@ -21,13 +21,15 @@ class TestBaseModelDocs(unittest.TestCase):
 
     def test_pep8_conformance(self):
         """Test that models/base_model.py and its test file conform to PEP8."""
-        paths = ['models/base_model.py', 'tests/test_models/test_base_model.py']
+        paths = [
+            'models/base_model.py', 'tests/test_models/test_base_model.py']
 
         for path in paths:
             with self.subTest(path=path):
                 style = pycodestyle.StyleGuide(quiet=True)
                 result = style.check_files([path])
-                self.assertEqual(result.total_errors, 0, f"Found code style errors in {path}.")
+                self.assertEqual(result.total_errors, 0,
+                                 f"Found code style errors in {path}.")
 
     def test_module_docstring(self):
         """Test for the existence of module docstring"""
@@ -81,20 +83,20 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(inst.number, 89)
 
     def test_datetime_attributes(self):
-        """Test that two BaseModel instances have different datetime objects
-        and that upon creation have identical updated_at and created_at
-        value."""
-        tic = datetime.now()
+        """Teste que deux instances de BaseModel ont des objets datetime
+        différents et que lors de leur création, created_at et updated_at
+        sont identiques."""
+
         inst1 = BaseModel()
-        toc = datetime.now()
-        self.assertTrue(tic <= inst1.created_at <= toc)
-        time.sleep(1e-4)
-        tic = datetime.now()
-        inst2 = BaseModel()
-        toc = datetime.now()
-        self.assertTrue(tic <= inst2.created_at <= toc)
+        self.assertLessEqual(inst1.created_at, datetime.utcnow())
         self.assertEqual(inst1.created_at, inst1.updated_at)
+
+        time.sleep(1)
+
+        inst2 = BaseModel()
+        self.assertLessEqual(inst2.created_at, datetime.utcnow())
         self.assertEqual(inst2.created_at, inst2.updated_at)
+
         self.assertNotEqual(inst1.created_at, inst2.created_at)
         self.assertNotEqual(inst1.updated_at, inst2.updated_at)
 

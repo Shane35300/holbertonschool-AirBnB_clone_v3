@@ -20,16 +20,16 @@ class TestCityDocs(unittest.TestCase):
         """Set up for the doc tests"""
         cls.city_f = inspect.getmembers(City, inspect.isfunction)
 
-    def test_pep8_conformance_city(self):  # Renamed to pep8 -> pycodestyle
+    def test_pep8_conformance_city(self):
         """Test that models/city.py conforms to PEP8."""
-        style = pycodestyle.StyleGuide(quiet=True)  # Updated to use pycodestyle
+        style = pycodestyle.StyleGuide(quiet=True)
         result = style.check_files(['models/city.py'])
         self.assertEqual(result.total_errors, 0,
                          "Found code style errors (and warnings).")
 
-    def test_pep8_conformance_test_city(self):  # Renamed to pep8 -> pycodestyle
+    def test_pep8_conformance_test_city(self):
         """Test that tests/test_models/test_city.py conforms to PEP8."""
-        style = pycodestyle.StyleGuide(quiet=True)  # Updated to use pycodestyle
+        style = pycodestyle.StyleGuide(quiet=True)
         result = style.check_files(['tests/test_models/test_city.py'])
         self.assertEqual(result.total_errors, 0,
                          "Found code style errors (and warnings).")

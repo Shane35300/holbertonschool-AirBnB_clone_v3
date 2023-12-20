@@ -22,18 +22,15 @@ class TestAmenityDocs(unittest.TestCase):
 
     def test_pep8_conformance_amenity(self):
         """Test that models/amenity.py conforms to PEP8."""
-        style = pycodestyle.StyleGuide(quiet=True)  # Updated to use pycodestyle
+        style = pycodestyle.StyleGuide(quiet=True)
         result = style.check_files(['models/amenity.py'])
-        self.assertEqual(result.total_errors, 0,
-                        "Found code style errors (and warnings).")
+        self.assertEqual(result.total_errors, 0, "Found code style errors")
 
     def test_pep8_conformance_test_amenity(self):
         """Test that tests/test_models/test_amenity.py conforms to PEP8."""
-        style = pycodestyle.StyleGuide(quiet=True)  # Updated to use pycodestyle
+        style = pycodestyle.StyleGuide(quiet=True)
         result = style.check_files(['tests/test_models/test_amenity.py'])
-        self.assertEqual(result.total_errors, 0,
-                        "Found code style errors (and warnings).")
-
+        self.assertEqual(result.total_errors, 0, "Found code style errors")
 
     def test_amenity_module_docstring(self):
         """Test for the amenity.py module docstring"""

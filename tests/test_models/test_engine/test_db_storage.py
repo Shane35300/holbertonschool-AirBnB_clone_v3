@@ -32,18 +32,16 @@ class TestDBStorageDocs(unittest.TestCase):
 
     def test_pep8_conformance_db_storage(self):
         """Test that models/engine/db_storage.py conforms to PEP8."""
-        style = pycodestyle.StyleGuide(quiet=True)  # Updated to use pycodestyle
+        style = pycodestyle.StyleGuide(quiet=True)
         result = style.check_files(['models/engine/db_storage.py'])
-        self.assertEqual(result.total_errors, 0,
-                        "Found code style errors (and warnings).")
+        self.assertEqual(result.total_errors, 0, "Found code style errors")
 
     def test_pep8_conformance_test_db_storage(self):
         """Test tests/test_models/test_db_storage.py conforms to PEP8."""
-        style = pycodestyle.StyleGuide(quiet=True)  # Updated to use pycodestyle
-        result = style.check_files(['tests/test_models/test_engine/test_db_storage.py'])
-        self.assertEqual(result.total_errors, 0,
-                        "Found code style errors (and warnings).")
-
+        style = pycodestyle.StyleGuide(quiet=True)
+        result = style.check_files([
+            'tests/test_models/test_engine/test_db_storage.py'])
+        self.assertEqual(result.total_errors, 0, "Found code style errors")
 
     def test_db_storage_module_docstring(self):
         """Test for the db_storage.py module docstring"""

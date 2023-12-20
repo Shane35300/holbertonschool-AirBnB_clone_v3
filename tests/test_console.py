@@ -17,14 +17,14 @@ class TestConsoleDocs(unittest.TestCase):
         style = pycodestyle.StyleGuide(quiet=True)
         result = style.check_files(['console.py'])
         self.assertEqual(result.total_errors, 0,
-                         "Found code style errors (and warnings).")
+                         "Found code style errors")
 
     def test_pep8_conformance_test_console(self):
         """Test that tests/test_console.py conforms to PEP8."""
         style = pycodestyle.StyleGuide(quiet=True)
         result = style.check_files(['tests/test_console.py'])
         self.assertEqual(result.total_errors, 0,
-                         "Found code style errors (and warnings).")
+                         "Found code style errors")
 
     def test_console_module_docstring(self):
         """Test for the console.py module docstring"""

@@ -20,16 +20,16 @@ class TestReviewDocs(unittest.TestCase):
         """Set up for the doc tests"""
         cls.review_f = inspect.getmembers(Review, inspect.isfunction)
 
-    def test_pep8_conformance_review(self):  # Renamed to pep8 -> pycodestyle
+    def test_pep8_conformance_review(self):
         """Test that models/review.py conforms to PEP8."""
-        style = pycodestyle.StyleGuide(quiet=True)  # Updated to use pycodestyle
+        style = pycodestyle.StyleGuide(quiet=True)
         result = style.check_files(['models/review.py'])
         self.assertEqual(result.total_errors, 0,
                          "Found code style errors (and warnings).")
 
-    def test_pep8_conformance_test_review(self):  # Renamed to pep8 -> pycodestyle
+    def test_pep8_conformance_test_review(self):
         """Test that tests/test_models/test_review.py conforms to PEP8."""
-        style = pycodestyle.StyleGuide(quiet=True)  # Updated to use pycodestyle
+        style = pycodestyle.StyleGuide(quiet=True)
         result = style.check_files(['tests/test_models/test_review.py'])
         self.assertEqual(result.total_errors, 0,
                          "Found code style errors (and warnings).")
