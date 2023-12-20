@@ -9,7 +9,7 @@ from api.v1.views import app_views
 @app_views.route('/amenities', methods=['GET'], strict_slashes=False)
 def get_all_amenities():
     """retrieves the list of all amenity objects"""
-    amenities = storage.get(Amenity).values() # récupéré les amenities
+    amenities = storage.all(Amenity).values() #  récupéré les amenities
 
     if amenities is None:
         abort(404)
@@ -17,6 +17,16 @@ def get_all_amenities():
     amenities_list = [amenity.to_dict() for amenity in amenities]
     # mettre dans une list
     return jsonify(amenities_list) # renvoie la list en json
+
+@app_views.route('/amenities/<amenity_id>', methods=['GET'], strict_slashes=False)
+def get_amenity_by_id(amenity_id):
+    """retrieves a amenity object"""
+    amenity = storage.get(Amenity, amenity_id)
+
+    if amenity is None:
+        abort(404)
+
+    return jsonify(amenity.to_dict())
 
 @app_views.route('/amenities/<amenity_id>', methods=['DELETE'],
                  strict_slashes=False)

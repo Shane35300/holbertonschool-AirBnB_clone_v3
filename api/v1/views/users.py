@@ -9,7 +9,7 @@ from api.v1.views import app_views
 @app_views.route('/users', methods=['GET'], strict_slashes=False)
 def get_all_users():
     """retrieves the list of all user objects"""
-    users = storage.get(User).values() # récupéré les users
+    users = storage.all(User).values() # récupéré les users
 
     if users is None:
         abort(404)

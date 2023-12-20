@@ -12,11 +12,12 @@ from models.user import User
                  strict_slashes=False)
 def get_all_places(city_id):
     """retrieves the list of all place object in a city id"""
-    places = storage.get(Place, city_id) # récupération des lieux
+    city = storage.get(City, city_id)
 
-    if places is None:
+    if city is None:
         abort(404)
 
+    places = city.places
     place_list = [place.to_dict() for place in places]
     # mettre dans une list
     return jsonify(place_list) # renvoie la list en json
@@ -46,8 +47,12 @@ def delete_place_object(place_id):
 
 @app_views.route('cities/<city_id>/places', methods=['POST'],
                  strict_slashes=False)
-def create_place():
+def create_place(city_id):
     """Creates new place object"""
+    city = storage.get(City, city_id)  # Récupérer l'objet State par ID
+
+    if not city:
+        abort(404)  # Si l'objet State n'est pas trouvé, renvoyer une erreur 404
     data = request.get_json()
     # Obtiens le corps de la requête en temps que dictionnaire
 
@@ -63,6 +68,8 @@ def create_place():
 
     if "name" not in data:
         abort(400, "Missing name")
+
+    data['city_id'] = city_id
 
     new_place = Place(**data)
     # crée un nouvelle objet place avec les données du JSON
