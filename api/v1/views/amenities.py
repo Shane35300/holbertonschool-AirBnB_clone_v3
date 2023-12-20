@@ -62,7 +62,7 @@ def update_amenity(amenity_id):
     data = request.get_json()
 
     if data is None:
-        abort(400, "Not JSON")
+        abort(400, "Not a JSON")
 
     # parcourir chaque key/value dans data
     for key, value in data.items():
