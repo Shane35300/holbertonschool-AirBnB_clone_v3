@@ -12,7 +12,7 @@ from models.place import Place
 from models.user import User
 
 
-@app_views.route('/status', methods=['GET'])
+@app_views.route('/status')
 def get_status():
     """Returns:
         JSON response with status OK if the server is running."""
@@ -32,4 +32,4 @@ def count_type():
         'users': storage.count(User),
     }
 
-    return jsonify({'stats': count_type})
+    return jsonify(count_type)
