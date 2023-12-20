@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"""Main module to start the HBNB API server."""
 
 from flask import Flask, jsonify
 from models import storage
