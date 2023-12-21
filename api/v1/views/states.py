@@ -13,6 +13,7 @@ def get_all_states():
     state_list = [state.to_dict() for state in states]  # Convertir en liste
     return jsonify(state_list)  # Renvoyer la liste en tant que réponse JSON
 
+
 @app_views.route('/states/<state_id>', methods=['GET'], strict_slashes=False)
 def get_state_by_id(state_id):
     """Retrieves a State object by ID"""
@@ -22,6 +23,7 @@ def get_state_by_id(state_id):
         abort(404)  # Si l'objet n'est pas trouvé, renvoyer une erreur 404
 
     return jsonify(state.to_dict())  # Convertir l'objet en dictionnaire
+
 
 @app_views.route('/states', methods=['POST'], strict_slashes=False)
 def create_state():
@@ -39,6 +41,7 @@ def create_state():
     storage.save()  # Sauvegarder les modifications dans le système de stockage
 
     return jsonify(new_state.to_dict()), 201  # Renvoyer le nouvel objet
+
 
 @app_views.route('/states/<state_id>', methods=['PUT'], strict_slashes=False)
 def update_state(state_id):
@@ -61,6 +64,7 @@ def update_state(state_id):
     storage.save()  # Sauvegarder les modifications dans le système de stockage
 
     return jsonify(state.to_dict()), 200  # Renvoyer l'objet mis à jour
+
 
 @app_views.route('/states/<state_id>', methods=['DELETE'],
                  strict_slashes=False)

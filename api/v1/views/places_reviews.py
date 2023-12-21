@@ -19,6 +19,7 @@ def get_all_reviews(place_id):
     reviews = [review.to_dict() for review in place.reviews]
     return jsonify(reviews)  # Renvoyer la liste des villes
 
+
 @app_views.route('/reviews/<review_id>', methods=['GET'], strict_slashes=False)
 def get_review_by_id(review_id):
     """Retrieves a Review object by ID"""
@@ -28,6 +29,7 @@ def get_review_by_id(review_id):
         abort(404)  # Si l'objet n'est pas trouvé, renvoyer une erreur 404
 
     return jsonify(review.to_dict())  # Convertir l'objet en dictionnaire
+
 
 @app_views.route('/places/<place_id>/reviews', methods=['POST'],
                  strict_slashes=False)
@@ -59,6 +61,7 @@ def create_review(place_id):
 
     return jsonify(new_review.to_dict()), 201  # Renvoyer le nouvel objet
 
+
 @app_views.route('/reviews/<review_id>', methods=['PUT'], strict_slashes=False)
 def update_review(review_id):
     """Updates a Review object by ID"""
@@ -81,6 +84,7 @@ def update_review(review_id):
     storage.save()  # Sauvegarder les modifications dans le système de stockage
 
     return jsonify(review.to_dict()), 200  # Renvoyer l'objet mis à jour
+
 
 @app_views.route('/reviews/<review_id>', methods=['DELETE'],
                  strict_slashes=False)

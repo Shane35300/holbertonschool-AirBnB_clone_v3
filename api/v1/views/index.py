@@ -18,6 +18,7 @@ def get_status():
         JSON response with status OK if the server is running."""
     return jsonify({"status": "OK"})
 
+
 @app_views.route('/stats')
 def count_type():
     """Returns:
