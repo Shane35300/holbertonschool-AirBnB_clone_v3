@@ -1,10 +1,10 @@
 #!/usr/bin/python3
 """Main module to start the HBNB API server."""
 
+from api.v1.views import app_views
 from flask import Flask, jsonify
 from flask_cors import CORS
 from models import storage
-from api.v1.views import app_views
 import os
 
 app = Flask(__name__)

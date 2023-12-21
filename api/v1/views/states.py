@@ -1,9 +1,12 @@
 #!/usr/bin/python3
+"""
+This is a module that create a view
+"""
 
+from api.v1.views import app_views
 from flask import Flask, jsonify, request, abort
 from models import storage
 from models.state import State
-from api.v1.views import app_views
 
 
 @app_views.route('/states', methods=['GET'], strict_slashes=False)

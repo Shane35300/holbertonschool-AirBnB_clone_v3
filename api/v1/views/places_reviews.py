@@ -1,10 +1,13 @@
 #!/usr/bin/python3
+"""
+This is a module that create a view
+"""
 
+from api.v1.views import app_views
 from flask import Flask, jsonify, request, abort
 from models import storage
 from models.place import Place
 from models.review import Review
-from api.v1.views import app_views
 from models.user import User
 
 
