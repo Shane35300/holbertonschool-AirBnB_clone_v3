@@ -9,6 +9,9 @@ from models.state import State
 from flask import Flask, jsonify, request, abort
 
 
+app = Flask(__name__)
+
+
 @app_views.route('/states', methods=['GET'], strict_slashes=False)
 def get_all_states():
     """Retrieves the list of all State objects"""
@@ -81,3 +84,7 @@ def delete_state(state_id):
     storage.save()
 
     return jsonify({}), 200
+
+
+if __name__ == "__main__":
+    app.run(host='0.0.0.0', port=5000)
