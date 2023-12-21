@@ -32,7 +32,8 @@ def get_place_by_id(place_id):
 
     return jsonify(place.to_dict()) # renvoie le lieux
 
-@app_views.route('/places/<place_id>', methods=['DELETE'], strict_slashes=False)
+@app_views.route('/places/<place_id>', methods=['DELETE'],
+                 strict_slashes=False)
 def delete_place_object(place_id):
     """Delete place object by id"""
     place = storage.get(Place, place_id)
@@ -52,7 +53,7 @@ def create_place(city_id):
     city = storage.get(City, city_id)  # Récupérer l'objet State par ID
 
     if not city:
-        abort(404)  # Si l'objet State n'est pas trouvé, renvoyer une erreur 404
+        abort(404)  # Si l'objet State n'est pas trouvé
     data = request.get_json()
     # Obtiens le corps de la requête en temps que dictionnaire
 

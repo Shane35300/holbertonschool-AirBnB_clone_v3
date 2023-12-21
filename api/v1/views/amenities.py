@@ -18,7 +18,8 @@ def get_all_amenities():
     # mettre dans une list
     return jsonify(amenities_list) # renvoie la list en json
 
-@app_views.route('/amenities/<amenity_id>', methods=['GET'], strict_slashes=False)
+@app_views.route('/amenities/<amenity_id>', methods=['GET'],
+                 strict_slashes=False)
 def get_amenity_by_id(amenity_id):
     """retrieves a amenity object"""
     amenity = storage.get(Amenity, amenity_id)
