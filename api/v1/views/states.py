@@ -3,10 +3,10 @@
 This is a module that create a view
 """
 
-from api.v1.views import app_views
+from flask import Flask, jsonify, request, abort
 from models import storage
 from models.state import State
-from flask import Flask, jsonify, request, abort
+from api.v1.views import app_views
 
 
 app = Flask(__name__)

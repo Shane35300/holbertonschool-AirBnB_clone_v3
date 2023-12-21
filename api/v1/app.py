@@ -22,12 +22,10 @@ def teardown_appcontext(exception):
 def not_found_error(error):
     """Returns:
         JSON response with a 404 status code."""
-    response = jsonify({'error': 'Not found'})
-    response.status_code = 404
-    return response
+    return jsonify({"error": 'Not found'}), 404
 
 
 if __name__ == '__main__':
     host = os.environ.get('HBNB_API_HOST', '0.0.0.0')
     port = int(os.environ.get('HBNB_API_PORT', 5000))
-    app.run(host=host, port=port, threaded=True, debug=True)
+    app.run(host=host, port=port, threaded=True)
