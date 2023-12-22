@@ -4,6 +4,7 @@ import unittest
 from api import app
 import json
 
+
 class FlaskAppTests(unittest.TestCase):
 
     def setUp(self):
