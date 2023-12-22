@@ -16,6 +16,7 @@ import sqlalchemy
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 
+
 classes = {"Amenity": Amenity, "City": City,
            "Place": Place, "Review": Review, "State": State, "User": User}
 
@@ -38,7 +39,7 @@ class DBStorage:
                                              HBNB_MYSQL_HOST,
                                              HBNB_MYSQL_DB))
         if HBNB_ENV == "test":
-            Base.metadata.drop_all(self.__engine)
+            Base.metadata.drop_all(bind=self.__engine)
 
     def all(self, cls=None):
         """query on the current database session"""
@@ -78,16 +79,13 @@ class DBStorage:
     def get(self, cls, id):
         """Retrieves an object"""
         if cls and id:
-            key = "{}.{}".format(cls.__name__, id)
             return self.__session.query(cls).get(id)
-        return None
 
     def count(self, cls=None):
         """Counts the number of objects in the storage"""
         count = 0
         if cls:
-            if cls in classes.values():
-                count = self.__session.query(cls).count()
+            return self.__session.query(cls).count()
         else:
             for clss in classes.values():
                 count += self.__session.query(clss).count()
